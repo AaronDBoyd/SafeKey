@@ -24,12 +24,16 @@
     <div class="container p-5 text-center">
 
         <h1>Safe Key Password Encoder</h1>
-        <button onclick="getRefKey()">Get Reference Key</button>
-        <p id="refKey" class="h5"></p>
+        <p class="steps"><strong>Step 1: </strong>Generate reference key of randomized alphanumeric characters.</p>
+        
+        <button onclick="getRefKey()" class="btn btn-outline-dark">Get Reference Key</button>
+        <p id="refKey" class="h5 my-3"></p>
         <hr />
         <div class="encode_decode">
             <div>
                 <h3>Encode</h3>
+                <p class="steps"><strong>Step 2: </strong>Use reference key and choose a number of steps to encode.</p>
+                <p><i>Save this key and step count to decode password</i></p>
                 <form id="encodeForm">
                     <div class="mb-3">
                         <label for="encodeRefKey" class="form-label">Enter Reference Key</label>
@@ -47,14 +51,16 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Encode</button>
                 </form>
-                <p id="encodedPassword" class="h5"></p>
+                <p id="encodedPassword" class="h5 my-3"></p>
             </div>
             <div>
                 <h3>Decode</h3>
+                <p class="steps"><strong>Step 3: </strong>Use reference key and chosen number that was used to encode.</p>
+                <p><i>Must be the same key and step count that was used to encode</i></p>
                 <form id="decodeForm">
                     <div class="mb-3">
                         <label for="decodeRefKey" class="form-label">Enter Reference Key</label>
-                        <textarea type="text" class="form-control" id="decodeRefKey" minlength="94" maxlength="94"
+                        <textarea type="text" class="form-control" id="decodeRefKey" minlength="95" maxlength="95"
                             aria-describedby="enterRefKey"></textarea>
                         <div class="form-text">Save the reference key to decode password.</div>
                     </div>
@@ -68,7 +74,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Decode</button>
                 </form>
-                <p id="decodedPassword" class="h5"></p>
+                <p id="decodedPassword" class="h5 my-3"></p>
             </div>
         </div>
     </div>
@@ -86,109 +92,6 @@
         $(window).on('load', function () {
             $("#loader-wrapper").fadeOut(700);
         });
-
-        let encodeForm = document.getElementById("encodeForm");
-        let decodeForm = document.getElementById("decodeForm");
-
-        encodeForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            let encodeRefKey = document.getElementById("encodeRefKey").value;
-            let encodeSteps = parseInt(document.getElementById("encodeSteps").value);
-            let encodePassword = document.getElementById("encodePassword").value;
-
-            console.log(encodeRefKey);
-            console.log(encodeSteps);
-            console.log(encodePassword);
-
-            let outputArray = new Array();
-
-            for (var i = 0; i < encodePassword.length; i++) {
-                let currentChar = encodePassword[i];
-                console.log(currentChar);
-
-                let keyIndex = encodeRefKey.indexOf(currentChar);
-                console.log(keyIndex);
-
-                let index = keyIndex + encodeSteps;
-                console.log(index);
-                if (index > 93) {
-                    index = index - 94;
-                }
-                console.log(index);
-
-                let outputChar = encodeRefKey[index];
-                console.log(outputChar);
-
-                outputArray.push(outputChar);
-                console.log(outputArray);
-            }
-
-            document.getElementById("encodedPassword").innerText = outputArray.join("");
-
-        });
-
-        decodeForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            let decodeRefKey = document.getElementById("decodeRefKey").value;
-            let decodeSteps = parseInt(document.getElementById("decodeSteps").value);
-            let decodePassword = document.getElementById("decodePassword").value;
-
-            console.log(decodeRefKey);
-            console.log("steps: " + decodeSteps);
-            console.log(decodePassword);
-
-            let outputArray = new Array();
-
-            for (var i = 0; i < decodePassword.length; i++) {
-                let currentChar = decodePassword[i];
-                console.log("currentChar: " + currentChar);
-
-                let keyIndex = decodeRefKey.indexOf(currentChar);
-                console.log("keyIndex: " + keyIndex);
-
-                let index = keyIndex - decodeSteps;
-                console.log("index: " + index);
-                if (index < 0) {
-                    index = index + 94;
-                }
-                console.log("index: " + index);
-
-                let outputChar = decodeRefKey[index];
-                console.log("outputChar: " + outputChar);
-
-                outputArray.push(outputChar);
-                console.log(outputArray);
-            }
-
-            document.getElementById("decodedPassword").innerText = outputArray.join("");
-
-        });
-
-
-
-        function getRefKey() {
-            var referenceString = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789!@#$%^&*()-_+={}[]|\\:;\",\'<>.?/~`";
-
-            var refArray = referenceString.split("");
-
-            var shuffledArray = shuffle(refArray);
-
-            var refKeyString = shuffledArray.join("");
-
-            document.getElementById("encodeRefKey").value = refKeyString;
-            document.getElementById("decodeRefKey").value = refKeyString;
-            document.getElementById("refKey").innerText = refKeyString;
-        }
-
-        const shuffle = (array) => {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        };
     </script>
 
     <script src="app.js"></script>

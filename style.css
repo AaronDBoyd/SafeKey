@@ -5,6 +5,19 @@
     gap: 30px;
 }
 
+i {
+    color: gray;
+}
+
+.steps {
+    font-weight: 500;
+}
+
+#refKey {
+    font-style: italic;
+    font-weight: 700;
+}
+
 
 
 
