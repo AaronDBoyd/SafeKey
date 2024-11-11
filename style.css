@@ -1,8 +1,22 @@
 
+body {
+  background-color: lightblue;
+}
+
+#refKey {
+    font-style: italic;
+    font-weight: 700;
+    overflow-wrap: break-word;
+}
+
 .encode_decode {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+}
+
+#encode, #decode {
+  min-width: 100%;
 }
 
 i {
@@ -13,13 +27,18 @@ i {
     font-weight: 500;
 }
 
-#refKey {
-    font-style: italic;
-    font-weight: 700;
+#encodedPassword, #decodedPassword {
+  background-color: orange;
+  overflow-wrap: break-word;
 }
 
+@media screen and (max-width: 768px) {
 
-
+  .encode_decode {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 
 @keyframes fadeinall {

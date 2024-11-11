@@ -23,56 +23,57 @@
     </div>
     <div class="container p-5 text-center">
 
-        <h1>Safe Key Password Encoder</h1>
+        <h1>Safe Key</h1>
+        <h2> Password Encoder</h2>
         <p class="steps"><strong>Step 1: </strong>Generate reference key of randomized alphanumeric characters.</p>
         
-        <button onclick="getRefKey()" class="btn btn-outline-dark">Get Reference Key</button>
+        <button onclick="getRefKey()" class="btn btn-outline-dark"><strong>Get Reference Key</strong></button>
         <p id="refKey" class="h5 my-3"></p>
         <hr />
         <div class="encode_decode">
-            <div>
+            <div id="encode">
                 <h3>Encode</h3>
                 <p class="steps"><strong>Step 2: </strong>Use reference key and choose a number of steps to encode.</p>
                 <p><i>Save this key and step count to decode password</i></p>
                 <form id="encodeForm">
                     <div class="mb-3">
-                        <label for="encodeRefKey" class="form-label">Enter Reference Key</label>
-                        <textarea type="text" class="form-control" id="encodeRefKey" minlength="94" maxlength="94"
+                        <label for="encodeRefKey" class="form-label fw-medium">Enter Reference Key</label>
+                        <textarea type="text" class="form-control" id="encodeRefKey" minlength="95" maxlength="95"
                             aria-describedby="enterRefKey"></textarea>
-                        <div class="form-text">Save the reference key to decode password.</div>
+                        <div class="form-text fw-bold">Save the reference key to decode password!</div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="encodeSteps">Enter Steps</label>
-                        <input type="number" class="form-control" id="encodeSteps" required>
+                        <label class="form-label fw-medium" for="encodeSteps">Enter Steps</label>
+                        <input type="number" class="form-control" id="encodeSteps" min="1" required>
                     </div>
                     <div class="mb-3">
-                        <label for="encodePassword" class="form-label">Password to Encode</label>
+                        <label for="encodePassword" class="form-label fw-medium">Password to Encode</label>
                         <textarea type="text" class="form-control" id="encodePassword" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Encode</button>
+                    <button type="submit" class="btn btn-primary fw-medium">Encode</button>
                 </form>
                 <p id="encodedPassword" class="h5 my-3"></p>
             </div>
-            <div>
+            <div id="decode">
                 <h3>Decode</h3>
-                <p class="steps"><strong>Step 3: </strong>Use reference key and chosen number that was used to encode.</p>
-                <p><i>Must be the same key and step count that was used to encode</i></p>
+                <p class="steps"><strong>Step 3: </strong>Use reference key and chosen number used to encode.</p>
+                <p><i>Must be the same key and step count used to encode</i></p>
                 <form id="decodeForm">
                     <div class="mb-3">
-                        <label for="decodeRefKey" class="form-label">Enter Reference Key</label>
+                        <label for="decodeRefKey" class="form-label fw-medium">Enter Reference Key</label>
                         <textarea type="text" class="form-control" id="decodeRefKey" minlength="95" maxlength="95"
                             aria-describedby="enterRefKey"></textarea>
                         <div class="form-text">Save the reference key to decode password.</div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="decodeSteps">Enter Steps</label>
-                        <input type="number" class="form-control" id="decodeSteps" required>
+                        <label class="form-label fw-medium" for="decodeSteps">Enter Steps</label>
+                        <input type="number" class="form-control" id="decodeSteps" min="1" required>
                     </div>
                     <div class="mb-3">
-                        <label for="decodePassword" class="form-label">Password to Decode</label>
+                        <label for="decodePassword" class="form-label fw-medium">Password to Decode</label>
                         <textarea type="text" class="form-control" id="decodePassword" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Decode</button>
+                    <button type="submit" class="btn btn-primary fw-medium">Decode</button>
                 </form>
                 <p id="decodedPassword" class="h5 my-3"></p>
             </div>
